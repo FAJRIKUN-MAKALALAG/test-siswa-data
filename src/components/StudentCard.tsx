@@ -1,9 +1,8 @@
-
-import React from 'react';
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Student } from './StudentForm';
+import { Student } from "./StudentForm";
 
 interface StudentCardProps {
   student: Student;
@@ -25,15 +24,13 @@ const StudentCard = ({ student, onEdit, onDelete }: StudentCardProps) => {
             </Badge>
           </div>
         </div>
-        
+
         <div className="mb-4">
-          <p className="text-gray-600 text-sm">
-            🎓 {student.major}
-          </p>
+          <p className="text-gray-600 text-sm">🎓 {student.major}</p>
         </div>
-        
+
         <div className="flex gap-2">
-          <Button 
+          <Button
             onClick={() => onEdit(student)}
             variant="outline"
             size="sm"
@@ -41,8 +38,8 @@ const StudentCard = ({ student, onEdit, onDelete }: StudentCardProps) => {
           >
             Edit
           </Button>
-          <Button 
-            onClick={() => onDelete(student.id)}
+          <Button
+            onClick={() => onDelete(student.nim)}
             variant="outline"
             size="sm"
             className="flex-1 text-red-600 border-red-200 hover:bg-red-50"
