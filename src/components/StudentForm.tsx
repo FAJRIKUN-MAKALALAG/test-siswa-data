@@ -7,10 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export interface Student {
   id: string;
+  nim: string;
   name: string;
-  class: string;
-  age: number;
-  email: string;
+  major: string;
 }
 
 interface StudentFormProps {
@@ -21,44 +20,39 @@ interface StudentFormProps {
 
 const StudentForm = ({ onSubmit, editingStudent, onCancelEdit }: StudentFormProps) => {
   const [formData, setFormData] = useState({
+    nim: '',
     name: '',
-    class: '',
-    age: '',
-    email: ''
+    major: ''
   });
 
   useEffect(() => {
     if (editingStudent) {
       setFormData({
+        nim: editingStudent.nim,
         name: editingStudent.name,
-        class: editingStudent.class,
-        age: editingStudent.age.toString(),
-        email: editingStudent.email
+        major: editingStudent.major
       });
     } else {
       setFormData({
+        nim: '',
         name: '',
-        class: '',
-        age: '',
-        email: ''
+        major: ''
       });
     }
   }, [editingStudent]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.class && formData.age && formData.email) {
+    if (formData.nim && formData.name && formData.major) {
       onSubmit({
+        nim: formData.nim,
         name: formData.name,
-        class: formData.class,
-        age: parseInt(formData.age),
-        email: formData.email
+        major: formData.major
       });
       setFormData({
+        nim: '',
         name: '',
-        class: '',
-        age: '',
-        email: ''
+        major: ''
       });
     }
   };
@@ -80,6 +74,19 @@ const StudentForm = ({ onSubmit, editingStudent, onCancelEdit }: StudentFormProp
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
+            <Label htmlFor="nim">NIM</Label>
+            <Input
+              id="nim"
+              name="nim"
+              type="text"
+              value={formData.nim}
+              onChange={handleChange}
+              placeholder="Masukkan NIM"
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
             <Label htmlFor="name">Nama Lengkap</Label>
             <Input
               id="name"
@@ -93,42 +100,14 @@ const StudentForm = ({ onSubmit, editingStudent, onCancelEdit }: StudentFormProp
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="class">Kelas</Label>
+            <Label htmlFor="major">Jurusan</Label>
             <Input
-              id="class"
-              name="class"
+              id="major"
+              name="major"
               type="text"
-              value={formData.class}
+              value={formData.major}
               onChange={handleChange}
-              placeholder="Contoh: XII IPA 1"
-              required
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="age">Umur</Label>
-            <Input
-              id="age"
-              name="age"
-              type="number"
-              value={formData.age}
-              onChange={handleChange}
-              placeholder="Masukkan umur"
-              min="1"
-              max="100"
-              required
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="contoh@email.com"
+              placeholder="Masukkan jurusan"
               required
             />
           </div>

@@ -21,17 +21,14 @@ const StudentCard = ({ student, onEdit, onDelete }: StudentCardProps) => {
               {student.name}
             </h3>
             <Badge variant="secondary" className="mb-2">
-              {student.class}
+              {student.nim}
             </Badge>
-          </div>
-          <div className="text-right text-sm text-gray-500">
-            <div>Umur: {student.age} tahun</div>
           </div>
         </div>
         
         <div className="mb-4">
           <p className="text-gray-600 text-sm">
-            📧 {student.email}
+            🎓 {student.major}
           </p>
         </div>
         
